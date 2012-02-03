@@ -10,11 +10,23 @@
           <a class="brand" href="{{@relroot}}">{{@projectname}}</a>
           <div class="nav-collapse">
             <ul class="nav">
-				<li class="active"><a href="{{@relroot}}"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
-				<li><a href="{{@relroot}}/users"><i class="icon-user icon-white"></i>&nbsp;Users</a></li>
+        				<li {{@PARAMS[0]=='/'?'class="active"':''}}><a href="{{@relroot}}"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
+        				<li {{@PARAMS[0]=='/users'?'class="active"':''}}><a href="{{@relroot}}/users"><i class="icon-user icon-white"></i>&nbsp;Users</a></li>
+                <li class="divider-vertical"></li>
+                <li {{strpos(@PARAMS[0],"/other/") === 0 ? 'class="dropdown active"' :'class="dropdown"'}}>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-chevron-right icon-white"></i>Other Links<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{@relroot}}/other/foo">Foo</a></li>
+                    <li><a href="{{@relroot}}/other/bar">Bar</a></li>
+                    <li><a href="{{@relroot}}/other/extra">Extra</a></li>
+                  </ul>
+                </li>
+
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+
+
 
