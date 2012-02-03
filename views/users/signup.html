@@ -3,23 +3,37 @@
 		<div class="control-group">
 			<label class="control-label" for="txtUsername">Username</label>
 			<div class="controls">
-				<input type="text" id="txtUsername" name="username" value="" />
+				<input type="text" id="txtUsername" name="username" value="{{@user->username}}" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" or="txtFirstName">First Name</label>
 			<div class="controls">
-				<input type="text" id="txtFirstName" name="firstname" value="" />
+				<input type="text" id="txtFirstName" name="firstname" value="{{@user->firstname}}" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" for="txtLastName">Last Name</label>
 			<div class="controls">
-				<input type="text" id="txtLastName" name="lastname" value="" />
+				<input type="text" id="txtLastName" name="lastname" value="{{@user->lastname}}" />
 			</div>
 		</div>
+
+
+		<div class="control-group">
+			<label class="control-label" for="selRole">Role</label>
+			<div class="controls">
+				<select name="role" id="selRole" name="role">
+					<option value="user" {{@user->role == 'user' ? 'selected="selected"' : ''}}>User</option>
+					<option value="moderator" {{@user->role == 'moderator' ? 'selected="selected"' : ''}}>Moderator</option>
+					<option value="admin" {{@user->role == 'admin' ? 'selected="selected"' : ''}}>Administrator</option>
+				</select>
+			</div>
+		</div>
+
+
 
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary" onclick="return false;">Sign Up</button>
