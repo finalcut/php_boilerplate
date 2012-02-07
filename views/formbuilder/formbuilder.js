@@ -175,6 +175,8 @@
 			form += '					<option value="input-phone">Input - Phone</option>';
 			form += '					<option value="input-email">Input - Email</option>';
 			form += '					<option value="input-money">Input - Money</option>';
+			form += '					<option value="input-ssn">Input - Social Security #</option>';
+			form += '					<option value="input-901">Input - 901 #</option>';
 			form += '					<option value="checkbox">Checkbox(s)</option>';
 			form += '					<option value="radio">Radio(s)</option>';
 			form += '					<option value="single-item-select">Select Single Item</option>';
@@ -215,6 +217,8 @@
 				case "input-money":
 				case "input-email":
 				case "input-phone":
+				case "input-ssn":
+				case "input-901":
 				case "input-password":
 					q.basictype = q.type.replace('input-','');
 					output +=  drawWrappers(q, drawStandardInput(q));

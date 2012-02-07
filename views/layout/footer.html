@@ -3,12 +3,21 @@
     <!-- Placed at the end of the document so the pages load faster -->   
   	<script src="{{@bootstraphome}}/js/jquery.js" type="text/javascript"></script>
 	<script src="{{@bootstraphome}}/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="{{@bootstraphome}}/js/input-mask.js" type="text/javascript"></script>
 
 
 	<F3:repeat group="{{@scripts}}" value="{{@script}}">
 		<script src="{{@relroot}}/views/{{@script}}" type="text/javascript"></script>
 	</F3:repeat>
 
+	<script>
+		$(document).ready(function(){
+			// default any input masks:
+			$('.date').mask("99/99/9999");
+			$('.phone').mask("(999) 999-9999");
+			$('.ssn').mask("999-99.9999");
+			$('.money').mask("99999.99");
+		});
 	</script>
    </body>
 </html>
