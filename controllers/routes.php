@@ -3,7 +3,7 @@
 		function() {
 			F3::set('html_title', 'PHP Scaffold Application');
 			F3::set('content','home.html');
-			echo Template::serve('layout.html');
+			echo Template::serve('layout/site.html');
 		});
 
 	F3::set('ONERROR', 'error_handler');
@@ -13,12 +13,12 @@
 			case 404:
 				F3::set('html_title', 'PAGE NOT FOUND');
 				F3::set('content', 'errors/404.html');
-				echo Template::serve('layout.html');
+				echo Template::serve('layout/site.html');
 				break;
 			case 500:
 				F3::set('html_title', 'OH SNAP - SOMETHINGS WRONG');
 				F3::set('content', 'errors/500.html');
-				echo Template::serve('layout.html');
+				echo Template::serve('layout/site.html');
 				break;
 		}
 	}

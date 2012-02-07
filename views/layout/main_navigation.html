@@ -11,6 +11,7 @@
           <div class="nav-collapse">
             <ul class="nav">
         				<li {{@PARAMS[0]=='/'?'class="active"':''}}><a href="{{@relroot}}"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
+                <li {{@PARAMS[0]=='/formbuilder'?'class="active"':''}}><a href="{{@relroot}}/formbuilder"><i class="icon-home icon-white"></i>&nbsp;Forms</a></li>
         				<li {{@PARAMS[0]=='/users'?'class="active"':''}}><a href="{{@relroot}}/users"><i class="icon-user icon-white"></i>&nbsp;Users</a></li>
                 <li class="divider-vertical"></li>
                 <li {{strpos(@PARAMS[0],"/other/") === 0 ? 'class="dropdown active"' :'class="dropdown"'}}>
