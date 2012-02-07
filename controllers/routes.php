@@ -1,7 +1,7 @@
 <?php
 	F3::route('GET /',
 		function() {
-			F3::set('html_title', 'PHP Scaffold Application');
+			F3::set('html_title', 'PHP Boilerplate Application');
 			F3::set('content','home.html');
 			echo Template::serve('layout/site.html');
 		});
