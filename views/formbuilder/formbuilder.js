@@ -67,7 +67,7 @@
 		$('.savebtn').live('click', function(){
 			var obj = $(this);
 			var id = obj.attr('counter');
-			var x = questionToJson($('#fn'+id).val(), $('#ht'+id).val(), $('#ft'+id + ' option:selected').val(), $('input[name="option' + id + '"][value!=""]') );
+			var x = questionToJson($('#fn'+id).val(), $('#ht'+id).val(), $('#ft'+id + ' option:selected').val(), $('input[name="option' + id + '"][value!=""]'), $('#rq'+id).attr('checked') );
 			formfields[id] = x;
 			drawForm();
 			return false;
@@ -96,12 +96,13 @@
 	});
 
 	function getEmptyJsonQuestion(){
-		return questionToJson("","","input-text", []);
+		return questionToJson("","","input-text", [], false);
 	}
 
-	function questionToJson(title, help, type, opts){
-		title = title == null ? '' : title;
+	function questionToJson(title, help, type, opts, required){
+		title = title == null || title.length == 0 ? 'Placeholder' : title;
 		help = help == null ? '' : help;
+		required = required == null ? false : required;
 
 		if(opts.length){
 			var op = [];
@@ -113,7 +114,7 @@
 		}
 
 
-		return {"title":title,"help":help,"type":type,"options":opts};
+		return {"title":title,"help":help,"type":type,"options":opts, "required":required};
 		
 	}
 
@@ -149,15 +150,6 @@
 			form += '				<input type="text" name="fieldname1" id="fn' + id + '" counter="' + id + '" value="">';
 			form += '				</div>';
 			form += '			</div>';
-			form += '			<div class="control-group span5 offset1">';
-			form += '				<button counter="' + id + '" id="save1" name="save' + id + '" class="btn btn-success savebtn"><i class="icon-lock icon-white"></i> Save</button>';
-			form += '				<button counter="' + id + '" id="copy1" name="copy' + id + '" class="btn btn-warning copybtn"><i class="icon-share icon-white"></i> Copy</button>';
-			form += '				<button counter="' + id + '" id="edit1" name="edit' + id + '" class="btn btn-info editbtn hidden"><i class="icon-edit icon-white"></i> Edit</button>';
-			form += '				<button counter="' + id + '" id="cancel1" name="cancel' + id + '" class="btn btn-danger cancelbtn"><i class="icon-remove-circle icon-white"></i> Cancel</button>';
-			form += '				<button counter="' + id + '" id="delete1" name="cancel' + id + '" class="btn btn-danger deletebtn hidden"><i class="icon-remove icon-white"></i> Delete</button>';
-			form += '			</div>';
-			form += '	  	</div>';
-			form += '		<div class="row">';
 			form += '			<div class="control-group span6">';
 			form += ' 				<label for="ht' + id + '">Help Text</label>';
 			form += '				<div class="controls">';
@@ -174,6 +166,7 @@
 			form += '					<option value="input-password">Input - Password</option>';
 			form += '					<option value="input-phone">Input - Phone</option>';
 			form += '					<option value="input-email">Input - Email</option>';
+			form += '					<option value="input-url">Input - URL</option>';
 			form += '					<option value="input-money">Input - Money</option>';
 			form += '					<option value="input-ssn">Input - Social Security #</option>';
 			form += '					<option value="input-901">Input - 901 #</option>';
@@ -185,7 +178,24 @@
 			form += '				</select>';
 			form += '				</div>';
 			form += '			</div>';
+			form += '			<div class="control-group span6">';
+			form += '				<label for="rq' + id + '">';
+			form += '				Required';
+			form += '				</label>';
+			form += '				<div class="controls">';
+			form += '				<input type="checkbox" name="required' + id + '" id="rq' + id + '" counter="' + id +'" class="requirebox">';
+			form += '				</div>';
+			form += '			</div>';
 			form += '		</div>';
+			form += '		<div class="row">';
+			form += '			<div class="control-group span6">';
+			form += '				<button counter="' + id + '" id="save1" name="save' + id + '" class="btn btn-success savebtn"><i class="icon-cog icon-white"></i> Generate</button>';
+//			form += '				<button counter="' + id + '" id="copy1" name="copy' + id + '" class="btn btn-warning copybtn"><i class="icon-share icon-white"></i> Copy</button>';
+//			form += '				<button counter="' + id + '" id="edit1" name="edit' + id + '" class="btn btn-info editbtn hidden"><i class="icon-edit icon-white"></i> Edit</button>';
+//			form += '				<button counter="' + id + '" id="cancel1" name="cancel' + id + '" class="btn btn-danger cancelbtn"><i class="icon-remove-circle icon-white"></i> Cancel</button>';
+//			form += '				<button counter="' + id + '" id="delete1" name="cancel' + id + '" class="btn btn-danger deletebtn hidden"><i class="icon-remove icon-white"></i> Delete</button>';
+			form += '			</div>';
+			form += '	  	</div>';
 			form += '		<div class="row span6 hidden" id="options' + id + '" options="0">';
 			form += '			<div class="control-group" id="cg-options' + id + '">';
 			form += '			<div class="controls" id="cg-options-conrols' + id + '">';
@@ -193,6 +203,7 @@
 			form += '			</div>';
 			form += '		</div>';
 			form += '	</fieldset>';
+		$('#formbuilder').remove();
 		$('#theform').append(form);
 	}
 
@@ -216,11 +227,13 @@
 				case "input-text":
 				case "input-money":
 				case "input-email":
+				case "input-url":
 				case "input-phone":
 				case "input-ssn":
 				case "input-901":
 				case "input-password":
 					q.basictype = q.type.replace('input-','');
+					console.log(q.basictype);
 					output +=  drawWrappers(q, drawStandardInput(q));
 					break;
 				case "multi-item-select":
@@ -273,10 +286,11 @@
 		var o = '<div class="control-group">\n';
 			o += '\t<label class="control-label" for="options' + q.basictype.toProperCase() + 'List">' + q.title + '</label>\n';
 			o += '\t<div class="controls">\n';
+		var required = q.required ? " required" : "";
 			for(var opt in q.options){
 				var val = q.options[opt];
 				o += '\t\t<label class="' + q.basictype + '">\n';
-				o += '\t\t\t<input type="' + q.basictype + '" class="' + q.basictype + '" id="rdo' + q.clean + val + '" name="' + q.title + '" value="' + val + '" />\n';
+				o += '\t\t\t<input type="' + q.basictype + '" class="' + q.basictype + required +  '" id="rdo' + q.clean + val + '" name="' + q.title + '" value="' + val + '" />\n';
 				o += '\t\t\t' + val + '\n';
 				o += '\t\t</label>\n';
 			}
@@ -289,14 +303,10 @@
 		return o;
 	}
 
-	function drawCheckboxes(q){
-		var o = '';
-
-		return o;
-	}
-
 	function drawSelect(q, multi){
-		var o = '\t\t<select class="' + q.basictype + '" id="sel' + q.clean + '" name="' + q.title + '"';
+		var required = q.required ? " required" : "";
+
+		var o = '\t\t<select class="' + q.basictype + required + '" id="sel' + q.clean + '" name="' + q.title + '"';
 			if(multi)
 				o+=' multiple="multiple" ';
 			o += '>\n'
@@ -319,16 +329,18 @@
 
 
 	function drawTextArea(q){
-		return '\t\t<textarea class="input text" name="' + q.title + '" id="txt' + q.clean + '"></textarea>';
+		var required = q.required ? " required" : "";
+		return '\t\t<textarea class="input text' + required + '" name="' + q.title + '" id="txt' + q.clean + '"></textarea>';
 	}
 
 
 	function drawStandardInput(q){
+		var required = q.required ? " required" : "";
 		var o = "\t\t";
 		if(q.basictype == 'password'){
-			o += '<input type="text" class="input ' + q.basictype + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
+			o += '<input type="password" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
 		} else {
-			o += '<input type="password" class="input ' + q.basictype + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
+			o += '<input type="text" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
 		}
 		return o;
 	}
