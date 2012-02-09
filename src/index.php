@@ -4,7 +4,7 @@
 
 
 // this gets F3 working.. it has to happen first.
-require_once '../f3/lib/base.php';
+require_once '../../f3/lib/base.php';
  
 
 // make sure your config.cfg file is correct for your application.
