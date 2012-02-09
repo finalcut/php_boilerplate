@@ -1,5 +1,5 @@
 <?php
-require '../../model/user.php';
+require 'src/model/user.php';
 class UserTest extends PHPUnit_Framework_TestCase
 {
 
