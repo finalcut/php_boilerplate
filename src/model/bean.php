@@ -45,15 +45,15 @@
 		 	$o = "";
 		 	foreach($fields as $field => $value){
 
+		 		/* safety check to make sure the properties were initialized on the object.
+		 		  due to the dynamic nature of the attribute setting isset will always return false
+		 		  so we have to look in the objects variables to determine if it is actually set
+		 		*/
 		 		if(array_key_exists($field, get_object_vars($this))) {
 		 			$o .= $field . ": " . $this->$field . "\n";
-		 		} else {
-		 			echo "didnt find $field";
-		 		}
+		 		} 
 		 	
 			 }
-
-		 	//print_r(get_object_vars($this));
 		 	return $o;
 		 }
 	}

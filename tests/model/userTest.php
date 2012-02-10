@@ -65,14 +65,8 @@ class UserTest extends PHPUnit_Framework_TestCase
 		$o = $user->toString();
 
 
-		$expected = "username: some-user\nfirstname:\nlastname:\nrole: user\nemail:\n";
-		/*
-		echo $o;
-		echo "------\n";
-		echo $expected;
-		*/
-
-		// $this->assertEquals($o, $expected);
+		$expected = "username: some-user\nfirstname: \nlastname: \nrole: user\nemail: \n";
+		 $this->assertEquals($o, $expected);
 
 		/* not sure why this test fails; it appears to be the same string; */
 
