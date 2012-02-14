@@ -19,6 +19,14 @@
 		}
 
 
+		/*
+			if you need to include one ore more javascript files in yoru site but you want to use F3 variables within those javascript
+			files then use this function.  This file will be rendered on the server before being returned.  It basically works just like
+			addScript above.  
+
+			NOTE:  rendered scripts are returned before non-rendered scripts and in the order they are added to this function
+			see /views/layout/footer.html 
+		*/
 		function addf3Script($scriptFile){
 			$this->addScriptFile($scriptFile,"f3scripts");
 		}
@@ -30,18 +38,21 @@
 		}
 
 
-		function writeNoExpireHeaders(){
+		// basically makes it so the content returned can't be cached since it is already outdated.
+		function writeNoCacheHeaders(){
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		}
 
+		// tells the browser what is coming back is json and not html
 		function writeJsonHeaders(){
-			$this->writeNoExpireHeaders();
+			$this->writeNoCacheHeaders();
 			header('Content-type: application/json');
 		}
 
+		// tells the browser what is coming back is javascript..
 		function writeJavascriptHeaders(){
-			$this->writeNoExpireHeaders();
+			$this->writeNoCacheHeaders();
 			header('Content-type: text/javascript');
 		}
 

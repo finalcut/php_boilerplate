@@ -1,13 +1,21 @@
 var AppRouter = Backbone.Router.extend({
 
+    /*
+        I am using the * at the beginning of the route becuase I don't know regex any better
+        and our AppRouter is located within a subdirectory of the webserver.  Feel free to tweak
+        this for your own needs if you can make it more efficient/selective.
+    */
     routes:{
         "*directory":"home",
-        "*directory/list":"employeeList"
     },
 
-    initialize:function (options) {
+
+    // this is intentionally left blank.  I don't really have anything to do on this examples initialization.
+    initialize:function () {
     },
 
+
+    // used by the routes above; basically when */directory is loaded this function is called.
     home:function () {
         // Since the home view never changes, we instantiate it and render it only once
         if (!this.homeView) {
@@ -15,25 +23,10 @@ var AppRouter = Backbone.Router.extend({
             this.homeView.render();
         }
         $('#content').html(this.homeView.el);
-    },
-
-
-    employeeList:function () {
-        $('#content').html('hahah');
-        /*
-        var employee = new Employee({id:id});
-        employee.fetch({
-            success:function (data) {
-                // Note that we could also 'recycle' the same instance of EmployeeFullView
-                // instead of creating new instances
-                $('#content').html(new EmployeeFullView({model:data}).render().el);
-            }
-        });
-        */
     }
-
 });
 
+// here we will cache our templates; check out util.js for how this is all working.
 tpl.loadTemplates(['home', 'employee-list-item'],
     function () {
         app = new AppRouter();
