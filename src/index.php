@@ -14,6 +14,8 @@ F3::config('config.cfg');
 // remember, JQUERY is avaiable to you.
 F3::set('scripts', array());
 
+// this is a variable that will hold javascript files that you want to use F3 variables in and thus have pre-process before being downloaded
+F3::set('f3scripts',array());
 
 /* 
 	this is a smart little utility that will find your route handlers and include them auto-magically.

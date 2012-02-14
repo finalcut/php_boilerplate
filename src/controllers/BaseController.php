@@ -15,9 +15,35 @@
 		see how they are included.
 		*/
 		function addScript($scriptFile){
-			$scripts = F3::get('scripts');
-			array_push($scripts,$scriptFile);
-			F3::set('scripts', $scripts);
+			$this->addScriptFile($scriptFile,"scripts");
 		}
+
+
+		function addf3Script($scriptFile){
+			$this->addScriptFile($scriptFile,"f3scripts");
+		}
+
+		private function addScriptFile($scriptFile, $key){
+			$scripts = F3::get($key);
+			array_push($scripts,$scriptFile);
+			F3::set($key, $scripts);
+		}
+
+
+		function writeNoExpireHeaders(){
+			header('Cache-Control: no-cache, must-revalidate');
+			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		}
+
+		function writeJsonHeaders(){
+			$this->writeNoExpireHeaders();
+			header('Content-type: application/json');
+		}
+
+		function writeJavascriptHeaders(){
+			$this->writeNoExpireHeaders();
+			header('Content-type: text/javascript');
+		}
+
 	}
 ?>
