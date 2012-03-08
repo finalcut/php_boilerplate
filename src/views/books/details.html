@@ -1,0 +1,13 @@
+<h2>{{@book->TITLE}}</h2>
+<table class="table table-bordered">
+	<tbody>
+		<tr>
+			<td>Genre</td>
+			<td><a href="{{@relroot}}/books/genre/{{@book->GENRE_ID}}">{{@book->GENRE}}</a></td>
+		<tr>
+		<tr>
+			<td>Description</td>
+			<td>{{@book->DESCRIPTION}}</td>
+		</tr>
+</table>
+<a href="{{@relroot}}/books">All Books</a>
