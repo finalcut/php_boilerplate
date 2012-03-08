@@ -103,6 +103,7 @@
 		title = title == null || title.length == 0 ? 'Placeholder' : title;
 		help = help == null ? '' : help;
 		required = required == null ? false : required;
+		cleanTitle = cleanName(title);
 
 		if(opts.length){
 			var op = [];
@@ -114,7 +115,7 @@
 		}
 
 
-		return {"title":title,"help":help,"type":type,"options":opts, "required":required};
+		return {"title":title,"cleanTitle":cleanTitle,"help":help,"type":type,"options":opts, "required":required};
 		
 	}
 
@@ -138,8 +139,6 @@
 
 	function injectQuestionForm(questionNumber){
 		var id = ++questionCounter;
-
-
 		questionNumber = isNaN(questionNumber) ? id : questionNumber++;
 		var form = '';
 			form += '	<fieldset id="' + id + '">';
@@ -190,10 +189,10 @@
 			form += '		<div class="row">';
 			form += '			<div class="control-group span6">';
 			form += '				<button counter="' + id + '" id="save1" name="save' + id + '" class="btn btn-success savebtn"><i class="icon-cog icon-white"></i> Generate</button>';
-//			form += '				<button counter="' + id + '" id="copy1" name="copy' + id + '" class="btn btn-warning copybtn"><i class="icon-share icon-white"></i> Copy</button>';
-//			form += '				<button counter="' + id + '" id="edit1" name="edit' + id + '" class="btn btn-info editbtn hidden"><i class="icon-edit icon-white"></i> Edit</button>';
-//			form += '				<button counter="' + id + '" id="cancel1" name="cancel' + id + '" class="btn btn-danger cancelbtn"><i class="icon-remove-circle icon-white"></i> Cancel</button>';
-//			form += '				<button counter="' + id + '" id="delete1" name="cancel' + id + '" class="btn btn-danger deletebtn hidden"><i class="icon-remove icon-white"></i> Delete</button>';
+			//form += '				<button counter="' + id + '" id="copy1" name="copy' + id + '" class="btn btn-warning copybtn"><i class="icon-share icon-white"></i> Copy</button>';
+			//form += '				<button counter="' + id + '" id="edit1" name="edit' + id + '" class="btn btn-info editbtn hidden"><i class="icon-edit icon-white"></i> Edit</button>';
+			//form += '				<button counter="' + id + '" id="cancel1" name="cancel' + id + '" class="btn btn-danger cancelbtn"><i class="icon-remove-circle icon-white"></i> Cancel</button>';
+			//form += '				<button counter="' + id + '" id="delete1" name="cancel' + id + '" class="btn btn-danger deletebtn hidden"><i class="icon-remove icon-white"></i> Delete</button>';
 			form += '			</div>';
 			form += '	  	</div>';
 			form += '		<div class="row span6 hidden" id="options' + id + '" options="0">';
@@ -290,7 +289,7 @@
 			for(var opt in q.options){
 				var val = q.options[opt];
 				o += '\t\t<label class="' + q.basictype + '">\n';
-				o += '\t\t\t<input type="' + q.basictype + '" class="' + q.basictype + required +  '" id="rdo' + q.clean + val + '" name="' + q.title + '" value="' + val + '" />\n';
+				o += '\t\t\t<input type="' + q.basictype + '" class="' + q.basictype + required +  '" id="rdo' + q.clean + val + '" name="' + q.cleanTitle + '" value="' + val + '" />\n';
 				o += '\t\t\t' + val + '\n';
 				o += '\t\t</label>\n';
 			}
@@ -306,7 +305,7 @@
 	function drawSelect(q, multi){
 		var required = q.required ? " required" : "";
 
-		var o = '\t\t<select class="' + q.basictype + required + '" id="sel' + q.clean + '" name="' + q.title + '"';
+		var o = '\t\t<select class="' + q.basictype + required + '" id="sel' + q.clean + '" name="' + q.cleanTitle + '"';
 			if(multi)
 				o+=' multiple="multiple" ';
 			o += '>\n'
@@ -330,7 +329,7 @@
 
 	function drawTextArea(q){
 		var required = q.required ? " required" : "";
-		return '\t\t<textarea class="input text' + required + '" name="' + q.title + '" id="txt' + q.clean + '"></textarea>';
+		return '\t\t<textarea class="input text' + required + '" name="' + q.cleanTitle + '" id="txt' + q.clean + '"></textarea>';
 	}
 
 
@@ -338,9 +337,9 @@
 		var required = q.required ? " required" : "";
 		var o = "\t\t";
 		if(q.basictype == 'password'){
-			o += '<input type="password" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
+			o += '<input type="password" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.cleanTitle + '" value="">';
 		} else {
-			o += '<input type="text" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.title + '" value="">';
+			o += '<input type="text" class="' + q.basictype + required + '" id="txt' + q.clean + '" name="' + q.cleanTitle + '" value="">';
 		}
 		return o;
 	}
