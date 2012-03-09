@@ -56,5 +56,11 @@
 			header('Content-type: text/javascript');
 		}
 
+		function dump($val){
+			print_r("<pre>");
+			print_r($val);
+			print_r("</pre>");
+		}
+
 	}
 ?>

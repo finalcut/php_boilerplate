@@ -269,7 +269,7 @@
 	function drawWrappers(q, ctrl) {
 		var o = '';
 		o += '<div class="control-group">\n';
-		o += '\t<label for="txt' + q.clean + '">'+q.title+'</label>\n';
+		o += '\t<label for="txt' + q.clean + '" class="control-label">'+q.title+'</label>\n';
 		o += '\t<div class="controls">\n';
 		o += ctrl + '\n';
 		if(q.help.length > 0){
