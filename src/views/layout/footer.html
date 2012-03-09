@@ -52,8 +52,9 @@
 	<script type="text/javascript">
 		function openMuFeedback(){
 				var o = $('#mufeedbackDialog');
-				if(o.length >0)
-					$('body').remove(o);
+				if(o.length >0) {
+					o.remove();
+				}
 
 				var p = "<div class='modal hide fade' id='mufeedbackDialog'>";
 				p += "<div class='modal-header'><a class='close' data-dismiss='modal'>x</a><h3>Report a Problem with the Website</h3></div>"
@@ -65,7 +66,7 @@
 					var m = $('#mufeedbackDialog');
 					if(m.length){
 						m.modal('hide');
-						$('body').remove(m);
+						m.remove();
 					}
 				}
 
@@ -79,9 +80,7 @@
 						});
 				});
 
-				$('#mufeedbackcancel').click(function(){
-						closemufeedback();
-				});
+				$('#mufeedbackcancel').click(closemufeedback);
 
 
 
