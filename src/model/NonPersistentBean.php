@@ -1,5 +1,5 @@
 <?php
-
+	namespace marshall\model;
 	/* 
 		this class should only be inheirited by model objects that don't have some form of persistence
 		since we use the F3 there are nice built in options for handling attribute definitions etc using
@@ -11,7 +11,7 @@
 			 if you override the constructor in your class; please make sure you call this one too. ex:
 			 parent::NonPersistentBean();
 		*/
-		function NonPersistentBean(){
+		function __construct(){
 			$this->initPropertiesFromArray(array());
 		}
 		 

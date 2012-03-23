@@ -1,5 +1,7 @@
 <?php
-require 'src/model/user.php';
+
+use \php_boilerplate\model\user as User;
+
 class UserTest extends PHPUnit_Framework_TestCase
 {
 

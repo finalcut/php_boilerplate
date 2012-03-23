@@ -1,5 +1,9 @@
 <?php
-class Book extends Axon {
+
+namespace php_boilerplate\model;
+
+
+class Book extends \Axon {
 	public function __construct() {
 		$this->sync('books');
 	}

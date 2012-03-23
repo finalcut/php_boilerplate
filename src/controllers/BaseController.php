@@ -3,6 +3,8 @@
 		basic controller class.  All other controller classes SHOULD extend this class as it provides some useful helper methods
 		that each controller will probably need.
 	*/ 
+	namespace php_boilerplate\controllers;
+	
 	class BaseController {
 
 
@@ -32,9 +34,9 @@
 		}
 
 		private function addScriptFile($scriptFile, $key){
-			$scripts = F3::get($key);
+			$scripts = \F3::get($key);
 			array_push($scripts,$scriptFile);
-			F3::set($key, $scripts);
+			\F3::set($key, $scripts);
 		}
 
 

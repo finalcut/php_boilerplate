@@ -1,12 +1,13 @@
 <?php
-	require 'bean.php';
-	class User extends NonPersistentBean
+	namespace php_boilerplate\model;
+
+	class User extends \marshall\model\NonPersistentBean
 	{
 		public $someUselessProperty = "ignore me";
 		// example of how to create your own constructor while calling the parent constructor
-		public function User(){
+		public function __construct(){
 			$this->someUselessProperty = "please ignore me";
-			parent::NonPersistentBean();
+			parent::__construct();
 		}
 
 		/* 

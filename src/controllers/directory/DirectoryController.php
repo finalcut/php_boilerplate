@@ -1,7 +1,8 @@
 <?php
-	require_once 'controllers/BaseController.php';
+	
+	namespace php_boilerplate\controllers\directory;
 
-	class DirectoryController extends BaseController {
+	class DirectoryController extends \php_boilerplate\controllers\BaseController {
 
 		/*
 			This section is a little unusual in that it uses some AJAX features via backbone
@@ -20,13 +21,13 @@
 			renderd files can reference F3 attributes/varibles within them while plain ones can't.
 		*/
 		function home(){
-			F3::set('html_title', 'Employee Directory');
+			\F3::set('html_title', 'Employee Directory');
 
 			/* this really is special; the content for home is provided by the later js file "directory/js/views/home.js" - which actuall
 			 loads directory/tpl/home.html  - it is a little confusing at first but it works out pretty well.  I really don't even have to set
 			 content to empty here other than to illustrate what is going on.
 			*/
-			F3::set('content','');
+			\F3::set('content','');
 
 			//plain JS file
 			$this->addScript('directory/js/utils.js');
@@ -40,7 +41,7 @@
 			// plain JS file
 			$this->addScript('directory/js/main.js');
 
-			echo Template::serve('layout/site.html');
+			echo \Template::serve('layout/site.html');
 		}
 
 		function listing(){
@@ -92,8 +93,8 @@
 			however the listing function in this file can still call this becuase it basically hardcodes the resource value in the path variable as listing.html
 		*/
 		private function loadresource($path, $ext){
-			F3::set('content','directory' . $path . F3::get('PARAMS["resource"]') . $ext);
-				echo Template::serve('layout/bare.html');
+			\F3::set('content','directory' . $path . \F3::get('PARAMS["resource"]') . $ext);
+				echo \Template::serve('layout/bare.html');
 			
 		}
 
