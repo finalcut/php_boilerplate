@@ -4,7 +4,9 @@
 		that each controller will probably need.
 	*/ 
 	namespace php_boilerplate\controllers;
-	
+	use \F3 as F3;
+	use \Template as Template;
+
 	class BaseController {
 
 
@@ -34,9 +36,9 @@
 		}
 
 		private function addScriptFile($scriptFile, $key){
-			$scripts = \F3::get($key);
+			$scripts = F3::get($key);
 			array_push($scripts,$scriptFile);
-			\F3::set($key, $scripts);
+			F3::set($key, $scripts);
 		}
 
 
