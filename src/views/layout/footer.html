@@ -22,7 +22,13 @@
 
 	<script src="{{@bootstraphome}}/js/plugins/jquery.validate.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
+
+		//override some default validator settings to work better with bootstrap
 		$(document).ready(function(){
+			jQuery.validator.setDefaults({ 
+			    errorElement: "span",
+			    errorClass: "error" 
+			});
 			// turn validation on for every form on the page
 			$("form").validate();
 		});
@@ -37,12 +43,15 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.mask.definitions["~"]="9";
+			$.mask.definitions["m"] = "[ 01]";
+			$.mask.definitions["d"] = "[ 0123]";
 			// default any input masks:
-			$('.date').mask("99/99/9999");
+			$('.date').mask("m9/d9/2019");
 			$('.phone').mask("(999) 999-9999");
 			$('.ssn').mask("999-99-9999");
-			$('.money').mask("99999.99");
+			//$('.money').mask("9.99");
 			$('.901').mask('~01-99-9999');
+			$('.number').mask("9?9999");
 		});
 	</script>
 	
