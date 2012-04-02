@@ -6,7 +6,7 @@
 	use \Axon as Axon;
 	use \DB as DB;
 
-	class BooksController extends \php_boilerplate\controllers\BaseController {
+	class BooksController extends \marshall\controllers\BaseController {
 
 
 		private function setupDB(){

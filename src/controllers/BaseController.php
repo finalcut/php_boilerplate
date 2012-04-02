@@ -3,7 +3,7 @@
 		basic controller class.  All other controller classes SHOULD extend this class as it provides some useful helper methods
 		that each controller will probably need.
 	*/ 
-	namespace php_boilerplate\controllers;
+	namespace marshall\controllers;
 	use \F3 as F3;
 	use \Template as Template;
 

@@ -4,7 +4,7 @@
 	use \F3 as F3;
 	use \Template as Template;
 
-	class DirectoryController extends \php_boilerplate\controllers\BaseController {
+	class DirectoryController extends \marshall\controllers\BaseController {
 
 		/*
 			This section is a little unusual in that it uses some AJAX features via backbone

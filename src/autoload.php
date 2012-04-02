@@ -7,7 +7,7 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'php_boilerplate\\controllers\\basecontroller' => '/controllers/BaseController.php',
+                'marshall\\controllers\\basecontroller' => '/controllers/BaseController.php',
                 'php_boilerplate\\controllers\\books\\bookscontroller' => '/controllers/books/BooksController.php',
                 'php_boilerplate\\controllers\\directory\\directorycontroller' => '/controllers/directory/DirectoryController.php',
                 'php_boilerplate\\controllers\\formbuilder\\formbuildercontroller' => '/controllers/formbuilder/FormBuilderController.php',

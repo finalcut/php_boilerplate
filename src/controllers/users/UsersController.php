@@ -4,7 +4,7 @@
 	use \F3 as F3;
 	use \Template as Template;
 
-	class UsersController extends \php_boilerplate\controllers\BaseController {
+	class UsersController extends \marshall\controllers\BaseController {
 		function home(){
 			F3::set('html_title', 'Become a User');
 			F3::set('content','users/signup.html');
