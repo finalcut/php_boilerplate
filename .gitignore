@@ -2,3 +2,6 @@
 *.DS_Store*
 cache.properties
 build
+f3
+src/config.cfg
+src/.htaccess
