@@ -4,7 +4,7 @@
 // this gets F3 working.. it has to happen first.
 require_once '../f3/lib/base.php';
 
- F3::set('f3base', '../../f3');
+ F3::set('f3base', '../f3');
 
 // make sure your config.cfg file is correct for your application.
 F3::config('config.cfg');
