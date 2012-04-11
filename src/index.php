@@ -25,7 +25,8 @@ require_once('autoload.php');
 	as soon as you create a new route handler it will start being seen without any additional configuration on your part.
 
 */
-require_once 'f3_utility/find_routes.php';
+require_once(__DIR__ . '/f3_utility/auto_include_files.php');
+require_once(__DIR__ . '/f3_utility/find_routes.php');
 
 
 // this just makes sure your page has a title if you forget to set one in your controller action; pleae don't muck with it.

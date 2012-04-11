@@ -1,0 +1,23 @@
+<h2>{{@book->TITLE}}</h2>
+<table class="table table-bordered">
+	<tbody>
+		<tr>
+			<td>Genre</td>
+			<td><a href="{{@relroot}}/books/genre/{{@book->GENRE_ID}}">{{@book->GENRE}}</a></td>
+		<tr>
+		<tr>
+			<td>Description</td>
+			<td>{{@book->DESCRIPTION}}</td>
+		</tr>
+		<tr>
+			<td>Actions</td>
+			<td>
+				<form method="post" action="{{@relroot}}/books/delete/book/{{@book->BOOK_ID}}" onsubmit="return confirm('Are you sure?');">
+					<div class="form-action">
+						<button type="submit" class="btn btn-primary">Delete</button>
+					</div>
+				</form>
+			</td>
+		</tr>
+</table>
+<a href="{{@relroot}}/books">All Books</a>

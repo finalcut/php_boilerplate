@@ -1,0 +1,34 @@
+
+<form method="post" action="{{@relroot}}/books/save/book" class="form-horizontal well">
+	<fieldset>
+	<legend>Book Details</legend>
+	<div class="control-group">
+		<label for="txt1Title" class="control-label">Title</label>
+		<div class="controls">
+			<input type="text" class="text required" id="txt1Title" name="Title" value="" maxlength="45">
+			<p class="help-block">The name of the book</p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="txt2Genre" class="control-label">Genre</label>
+		<div class="controls">
+			<select class="select required" id="sel2Genre" name="GenreID" >
+				<F3:repeat group="{{@genres}}" value="{{@item}}">
+					<option value="{{@item['GENRE_ID']}}">{{@item['GENRE']}}</option>
+				</F3:repeat>				
+			</select>
+			<p class="help-block">The style of the book</p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="txt3Description" class="control-label">Description</label>
+		<div class="controls">
+			<textarea class="input text" name="Description" id="txt3Description" maxlength="200"></textarea>
+		</div>
+	</div>	
+	<div class="form-action">
+		<button type="submit" class="btn btn-primary">Save</button>
+		<button class="btn">Cancel</button>
+	</div>
+	</fieldset>
+</form>

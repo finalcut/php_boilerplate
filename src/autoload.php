@@ -7,17 +7,11 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'marshall\\controllers\\basecontroller' => '/controllers/BaseController.php',
-                'php_boilerplate\\controllers\\books\\bookscontroller' => '/controllers/books/BooksController.php',
-                'php_boilerplate\\controllers\\directory\\directorycontroller' => '/controllers/directory/DirectoryController.php',
-                'php_boilerplate\\controllers\\formbuilder\\formbuildercontroller' => '/controllers/formbuilder/FormBuilderController.php',
-                'php_boilerplate\\controllers\\other\\othercontroller' => '/controllers/other/OtherController.php',
-                'php_boilerplate\\controllers\\users\\userscontroller' => '/controllers/Users/UsersController.php',
-                'php_boilerplate\\model\user' => '/model/user.php',
-                'php_boilerplate\\model\book' => '/model/book.php',
-                'marshall\\model\nonpersistentbean' => '/model/NonPersistentBean.php'
-
-
+                'marshall\\core\\basecontroller' => '/core/BaseController.php',
+                'marshall\\core\\nonpersistentbean' => '/core/NonPersistentBean.php',
+                'marshall\\core\\menu' => '/core/Menu.php',
+                'marshall\\core\\menuitem' => '/core/MenuItem.php',
+                'marshall\\core\\baseplugin' => '/core/BasePlugin.php'                
             );
         }
         $cn = strtolower($class);
@@ -26,4 +20,7 @@ spl_autoload_register(
         }
     }
 );
+require_once(__DIR__ . '/f3_utility/auto_include_files.php');
+// hopefully auto pull in any other autoload files in the plugins directories
+include_once(__DIR__ . '/f3_utility/find_autoload.php');
 // @codeCoverageIgnoreEnd

@@ -1,26 +1,3 @@
 <?php
-/*
-	this file basically just intelligently finds your routes files within your controllers directories..
-
-
-
-*/
-function find_files($path, $pattern, $callback) {
-  $path = rtrim(str_replace("\\", "/", $path), '/') . '/*';
-                                 
-  foreach (glob ($path) as $fullname) {
-    if (is_dir($fullname)) {
-      find_files($fullname, $pattern, $callback);
-    } else if (preg_match($pattern, $fullname)) {
-      call_user_func($callback, $fullname);
-    }
-  }
-}
-
-function includeRoutes($path){
-	include($path);
-}
-
-
-find_files(F3::get('routes') == null ? "routes/" : F3::get('routes'), '/routes.php/','includeRoutes');
-?>	
+find_files(F3::get('routes') == null ? "routes/" : F3::get('routes'), '/_routes.php/','includeFiles');
+?>  
