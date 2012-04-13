@@ -8,10 +8,23 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'marshall\\core\\basecontroller' => '/core/BaseController.php',
-                'marshall\\core\\nonpersistentbean' => '/core/NonPersistentBean.php',
+                'marshall\\core\\baseplugin' => '/core/BasePlugin.php',
                 'marshall\\core\\menu' => '/core/Menu.php',
                 'marshall\\core\\menuitem' => '/core/MenuItem.php',
-                'marshall\\core\\baseplugin' => '/core/BasePlugin.php'                
+                'marshall\\core\\nonpersistentbean' => '/core/NonPersistentBean.php',
+                'php_boilerplate\\plugins\\books\\_plugin' => '/plugins/books/_plugin.php',
+                'php_boilerplate\\plugins\\books\\bookreader' => '/plugins/books/BookReader.php',
+                'php_boilerplate\\plugins\\books\\bookwriter' => '/plugins/books/BookWriter.php',
+                'php_boilerplate\\plugins\\directory\\_plugin' => '/plugins/directory/_plugin.php',
+                'php_boilerplate\\plugins\\directory\\directory' => '/plugins/directory/Directory.php',
+                'php_boilerplate\\plugins\\formbuilder\\_plugin' => '/plugins/formbuilder/_plugin.php',
+                'php_boilerplate\\plugins\\formbuilder\\formbuilder' => '/plugins/formbuilder/FormBuilder.php',
+                'php_boilerplate\\plugins\\home\\_plugin' => '/plugins/home/_plugin.php',
+                'php_boilerplate\\plugins\\other\\_plugin' => '/plugins/other/_plugin.php',
+                'php_boilerplate\\plugins\\other\\other' => '/plugins/other/Other.php',
+                'php_boilerplate\\plugins\\users\\_plugin' => '/plugins/users/_plugin.php',
+                'php_boilerplate\\plugins\\users\\model\\user' => '/plugins/users/model/User.php',
+                'php_boilerplate\\plugins\\users\\users' => '/plugins/users/Users.php'
             );
         }
         $cn = strtolower($class);
@@ -20,7 +33,4 @@ spl_autoload_register(
         }
     }
 );
-require_once(__DIR__ . '/f3_utility/auto_include_files.php');
-// hopefully auto pull in any other autoload files in the plugins directories
-include_once(__DIR__ . '/f3_utility/find_autoload.php');
 // @codeCoverageIgnoreEnd

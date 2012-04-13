@@ -1,6 +1,6 @@
 <?php
 
-use \php_boilerplate\model\user as User;
+use \php_boilerplate\plugins\users\model\user as User;
 
 class UserTest extends PHPUnit_Framework_TestCase
 {
