@@ -57,6 +57,18 @@ class UserTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse(array_key_exists("foo", get_object_vars($user)));
 	}
 
+	public function testToArray(){
+		$user = new User();
+		$ary = $user->toArray();
+
+		$this->assertEquals($ary['role'],"user");
+		$this->assertEquals($ary['username'],"");
+
+		$this->assertFalse(isset($ary['someUselessProperty']));
+		$this->assertFalse(isset($ary['foo']));
+
+	}
+
 	public function testToStringWithValidUsername(){
 		$fatProps = array('username'=>'some-user');
 
