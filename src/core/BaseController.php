@@ -6,9 +6,22 @@
 	namespace marshall\core;
 	use \F3 as F3;
 	use \Template as Template;
+	use \marshall\core\Session as Session;
 
 	class BaseController {
+		public $session;
 
+		public function __construct(){
+			$this->session = new Session();
+		}
+
+		function beforeRoute(){
+			// gets executed before the current route..
+		}
+
+		function afterRoute(){
+			// gets executed after the current route..
+		}
 
 
 		/* if you need to include one or more script files in your site pass them into this funciton.

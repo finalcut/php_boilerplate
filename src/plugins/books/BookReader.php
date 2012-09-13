@@ -10,13 +10,13 @@
 
 
 		private function setupDB(){
-			$connString =  "mysql:host=" . F3::get("DBHost") . ";port=3306;dbname=" . F3::get("DB");
+			$connString =  "mysql:host=" . F3::get("dbsettings.host") . ";port=3306;dbname=" . F3::get("dbsettings.name");
 
 			F3::set('DB',
 				new DB(
 					$connString,
-					F3::get("DBUsername"),
-					F3::get("DBPassword")
+					F3::get("dbsettings.username"),
+					F3::get("dbsettings.password")
 				)
 			);
 
