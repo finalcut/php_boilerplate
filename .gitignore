@@ -5,3 +5,5 @@ build
 f3
 src/config.cfg
 src/.htaccess
+php_boilerplate.sublime-project
+php_boilerplate.sublime-workspace
