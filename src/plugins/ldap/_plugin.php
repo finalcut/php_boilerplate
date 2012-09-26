@@ -25,7 +25,7 @@
 		public function addMenuItems(){
 			$isLoggedIn = $this->session->get("isLoggedIn");
 
-			$this->session->dump();
+			//$this->session->dump();
 			
 			$node = new MenuItem();
 

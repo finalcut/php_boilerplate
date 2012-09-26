@@ -73,8 +73,10 @@
 			header('Content-type: text/javascript');
 		}
 
-		function dump($val){
+		function dump($val, $name){
 			print_r("<pre>");
+			if(strlen($name))
+			 echo "<div>$name</div>";
 			print_r($val);
 			print_r("</pre>");
 		}

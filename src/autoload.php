@@ -7,14 +7,18 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'adldap' => '/core/adLDAP.php',
+                'adldapexception' => '/core/adLDAP.php',
                 'marshall\\core\\basecontroller' => '/core/BaseController.php',
                 'marshall\\core\\baseplugin' => '/core/BasePlugin.php',
+                'marshall\\core\\error' => '/core/Error.php',
                 'marshall\\core\\menu' => '/core/Menu.php',
                 'marshall\\core\\menuitem' => '/core/MenuItem.php',
                 'marshall\\core\\nonpersistentbean' => '/core/NonPersistentBean.php',
                 'marshall\\core\\session' => '/core/session.php',
                 'marshall\\plugins\\ldap\\_plugin' => '/plugins/ldap/_plugin.php',
                 'marshall\\plugins\\ldap\\ldapcontroller' => '/plugins/ldap/LdapController.php',
+                'marshall\\plugins\\ldap\\services\\ldapservice' => '/plugins/ldap/services/ldapService.php',
                 'php_boilerplate\\plugins\\books\\_plugin' => '/plugins/books/_plugin.php',
                 'php_boilerplate\\plugins\\books\\bookreader' => '/plugins/books/BookReader.php',
                 'php_boilerplate\\plugins\\books\\bookwriter' => '/plugins/books/BookWriter.php',
