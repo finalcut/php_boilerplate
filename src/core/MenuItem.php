@@ -32,6 +32,7 @@
 				,'icon'=>""
 				,'children'=>array()
 				,'sort_order'=>10
+				,'id'=>""
 
 			);
 		}

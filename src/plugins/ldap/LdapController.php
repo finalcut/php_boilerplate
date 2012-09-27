@@ -13,6 +13,7 @@
 
 		public function loginForm(){
 			F3::set("content","ldap/views/loginForm.html");
+			$this->addScript('ldap/views/login.js');
 			echo Template::serve('core/layout/site.html');
 		}
 
@@ -22,29 +23,48 @@
 			$data = F3::scrub($_REQUEST);
 
 
-			$ldapService = new LdapService(F3::get("activeDirectory"));
+			$adSettings = F3::get("activeDirectory");
+			$ldapService = new LdapService($adSettings);
 			$logged_in = $ldapService->authenticate($data["username"], $data["password"], false);
 
-			if($logged_in && !is_a($logged_in, 'Error')){
+
+			$results = array();
+
+			if($logged_in && !is_a($logged_in, 'marshall\core\Error')){
 				$session = new Session();
-				$session->set("isLoggedIn", true);
-				$session->set("username",$data["username"]);
-				$session->set("isAdmin", $ldapService->is_in_admin_group($data["username"]));
-				F3::reroute("/");
+				$user = $session->get("USER");
+				$user->setLoggedIn(true);
+				$user->setUsername($data["username"]);
+				$session->set("USER",$user);
+
+				$results["status"] = 1;
+				$results["message"] = "";
 
 			} else {
-				F3::reroute("/loginForm");
+				$results["status"] = 0;
+				$results["message"] = "Login Failed";
 			}
+
+			F3::set('content',json_encode($results));
+			echo Template::serve('core/layout/json.html');
+
 		}
 
 		public function logout(){
 			$session = new Session();
-			$session->set("isLoggedIn", false);
-			$session->set("username",false);
-			$session->set("isAdmin", false);
+			$user = $session->get("USER");
+			$user->setLoggedIn(false);
+			$user->setUsername("");
+			$session->set("USER",$user);
 			// send back to the homepage
 			F3::set("loggedout",true);
 			F3::reroute("/");
+		}
+
+
+		public function logoutScript(){
+			F3::set('content','ldap/views/logout.js');
+			echo Template::serve('core/layout/js.html');			
 		}
 
 		

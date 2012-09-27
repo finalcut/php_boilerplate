@@ -12,8 +12,6 @@
 
 		public function __construct(){
 			$this->session = new Session();
-
-
 			parent::__construct();
 		}
 
@@ -23,13 +21,11 @@
 		}
 
 		public function addMenuItems(){
-			$isLoggedIn = $this->session->get("isLoggedIn");
+			$user = $this->session->get("USER");
 
-			//$this->session->dump();
-			
 			$node = new MenuItem();
 
-			if(!$isLoggedIn){			
+			if(!$user->isLoggedIn()){			
 				$node->name = "Login";
 				$node->root_path = '/loginForm';
 				$node->icon = 'icon-lock';
@@ -39,12 +35,14 @@
 				$node->root_path = '/logout';
 				$node->icon = 'icon-lock';
 				$node->sort_order = 100;
+				$node->id = "lnkLogout";
+
+				$this->addF3Script('logoutScript');				
 			}
 
 			Menu::addMenu($node);
 
 		}
-
-
 	}
+	
 ?>

@@ -24,34 +24,21 @@
 
 
 
-		function authenticate($username, $password, $adminOnly) {
+		function authenticate($username, $password, $group) {
 			if ( empty($username) || empty($password) ) {
-				/*
-				$error = new WP_Error();
-
-				if ( empty($username) )
-					$error->add('empty_username', __('<strong>ERROR</strong>: The username field is empty.'));
-
-				if ( empty($password) )
-					$error->add('empty_password', __('<strong>ERROR</strong>: The password field is empty.'));
-
-				return $error;
-				*/
+				return new Error('ldap_error', 'username and password are both required');
 			}
 			
-			$auth_result = $this->can_authenticate($username, $password);
+			$auth_result = $this->canAuthenticate($username, $password);
 			$is_admin = false;
-			if($auth_result && strLen($this->ldapSettings["adminGroups"])){
-				$is_admin = $this->is_in_admin_group($username);
-				if($adminOnly){
-					$auth_result = false;
-				}
+			if($auth_result && strLen($group)){
+				$auth_result = $this->isInGroup($username);
 			}
 
 			return $auth_result;
 
 		}
-		function can_authenticate($username, $password){
+		function canAuthenticate($username, $password){
 			$result = $this->adldap->authenticate($username,$password);
 
 			if($result == false)
@@ -60,8 +47,14 @@
 			}
 			return $result;
 		}
-		function is_in_admin_group($username){
-			return $this->adldap->user_ingroup($username, explode(",", $this->ldapSettings["adminGroups"]));
+		function isInGroup($username, $groups){
+			$groups = explode(",", $groups);
+			foreach($groups as $group){
+				if($this->adldap->user_ingroup($username, $group)){
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 ?>

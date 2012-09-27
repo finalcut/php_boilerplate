@@ -15,17 +15,17 @@
                     <F3:true>
                       <li class="divider-vertical"></li>
                       <li {{strpos(@PARAMS[0],@el->root_path) === 0 ?'class="dropdown active"':'class="dropdown"'}}>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{{@el->icon}} icon-white"></i>&nbsp;{{@el->name}}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" {{strlen(@el->id) > 0 ? 'id="' . @el->id .'"' : ''}}><i class="{{@el->icon}} icon-white"></i>&nbsp;{{@el->name}}<b class="caret"></b></a>
                       <ul class="dropdown-menu">
                       <F3:repeat group="{{@el->children}}" value="{{@child}}">
-                        <li {{@PARAMS[0]== @child->root_path ?'class="active"':''}}><a href="{{@relroot}}{{@child->root_path}}"><i class="{{@child->icon}}"></i>&nbsp;{{@child->name}}</a></li>
+                        <li {{@PARAMS[0]== @child->root_path ?'class="active"':''}}><a href="{{@relroot}}{{@child->root_path}}" {{strlen(@child->id) > 0 ? 'id="' . @child->id .'"' : ''}}><i class="{{@child->icon}}"></i>&nbsp;{{@child->name}}</a></li>
                       </F3:repeat>
                       </ul>
                     </li>
                     <li class="divider-vertical"></li>
                     </F3:true>
                     <F3:false>
-                      <li {{@PARAMS[0]== @el->root_path ?'class="active"':''}}><a href="{{@relroot}}{{@el->root_path}}"><i class="{{@el->icon}} icon-white"></i>&nbsp;{{@el->name}}</a></li>
+                      <li {{@PARAMS[0]== @el->root_path ?'class="active"':''}}><a href="{{@relroot}}{{@el->root_path}}" {{strlen(@el->id) > 0 ? 'id="' . @el->id .'"' : ''}}><i class="{{@el->icon}} icon-white"></i>&nbsp;{{@el->name}}</a></li>
                     </F3:false>
                   </F3:check>
                 </F3:repeat>

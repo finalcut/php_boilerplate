@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+//session_start();
  // you really shouldn't ever have to touch this file; it just does everythign without assistence..
 
 // this gets F3 working.. it has to happen first.
@@ -27,6 +30,7 @@ require_once('autoload.php');
 
 */
 require_once(__DIR__ . '/f3_utility/auto_include_files.php');
+require_once(__DIR__ . '/f3_utility/setupSession.php');
 require_once(__DIR__ . '/f3_utility/find_routes.php');
 
 
@@ -37,8 +41,6 @@ require_once(__DIR__ . '/f3_utility/find_routes.php');
 					: F3::get("html_title");
 
 	F3::set("html_title", $title);
-
-
 
 // this happens last - and is what sets the page render in motion based on whatever you have happening in your controller.
 F3::run();

@@ -9,8 +9,10 @@ spl_autoload_register(
             $classes = array(
                 'adldap' => '/core/adLDAP.php',
                 'adldapexception' => '/core/adLDAP.php',
+                'marshall\\core\\base' => '/core/Base.php',
                 'marshall\\core\\basecontroller' => '/core/BaseController.php',
                 'marshall\\core\\baseplugin' => '/core/BasePlugin.php',
+                'marshall\\core\\baseuser' => '/core/BaseUser.php',
                 'marshall\\core\\error' => '/core/Error.php',
                 'marshall\\core\\menu' => '/core/Menu.php',
                 'marshall\\core\\menuitem' => '/core/MenuItem.php',

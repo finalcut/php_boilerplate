@@ -96,7 +96,7 @@
 		*/
 		private function loadresource($path, $ext){
 			F3::set('content','directory/views' . $path . F3::get('PARAMS["resource"]') . $ext);
-				echo Template::serve('core/layout/bare.html');
+			echo Template::serve('core/layout/bare.html');
 			
 		}
 

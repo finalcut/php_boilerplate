@@ -1,4 +1,6 @@
-<form method="post" action="{{@relroot}}/login" class="form-horizontal">
+<form method="post" action="{{@relroot}}/login" id="loginForm" class="form-horizontal">
+	<input type="hidden" name="returnTo" id="returnTo" value="{{@relroot}}" />
+	<legend>Login</legend>
 	<div class="control-group">
 		<label class="control-label" for="txtUsername">Username</label>
 		<div class="controls">
@@ -13,6 +15,6 @@
 	</div>
 
 	<div class="form-actions">
-		<input type="submit" class="btn btn-primary" value="Login" />
+		<input type="submit" class="btn btn-primary" id="loginButton" value="Login" />
 	</div>	
 </form>

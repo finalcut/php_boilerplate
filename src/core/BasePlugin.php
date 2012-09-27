@@ -4,8 +4,9 @@
 		that each controller will probably need.
 	*/ 
 	namespace marshall\core;
+	use \marshall\core\Base as Base;
 
-	abstract class BasePlugin {
+	abstract class BasePlugin extends Base {
 		/*
 			 if you override the constructor in your class; please make sure you call this one too. ex:
 			 parent::NonPersistentBean();
@@ -18,12 +19,6 @@
 
 		 abstract function getPluginName();
 
-
-		function dump($val){
-			print_r("<pre>");
-			print_r($val);
-			print_r("</pre>");
-		}
 
 	}
 ?>
