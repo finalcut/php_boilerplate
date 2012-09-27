@@ -11,6 +11,10 @@
 		private $isAdmin = false;
 		
 		function __construct(){
+			$this->clearAll();
+		}
+
+		public function clearAll(){
 			$this->setUsername("");
 			$this->setLoggedIn(false);
 			$this->setIsAdmin(false);

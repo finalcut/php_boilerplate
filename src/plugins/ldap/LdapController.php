@@ -35,7 +35,19 @@
 				$user = $session->get("USER");
 				$user->setLoggedIn(true);
 				$user->setUsername($data["username"]);
+				$user->setIsAdmin($ldapService->isInGroup($data["username"], $adSettings["adminGroups"]));
+
+				/*
+					NOTE: if you add any other group checks here you will break easy-compatiablity with getting
+					bug fixes for this plugin in the future.  However, this plugin works well so you should feel
+					comfortable doing further checks if you need it.
+				 */ 
+
+
+
 				$session->set("USER",$user);
+
+
 
 				$results["status"] = 1;
 				$results["message"] = "";
@@ -53,8 +65,7 @@
 		public function logout(){
 			$session = new Session();
 			$user = $session->get("USER");
-			$user->setLoggedIn(false);
-			$user->setUsername("");
+			$user->clearAll();
 			$session->set("USER",$user);
 			// send back to the homepage
 			F3::set("loggedout",true);
