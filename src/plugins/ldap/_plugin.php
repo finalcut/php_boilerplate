@@ -21,26 +21,28 @@
 		}
 
 		public function addMenuItems(){
-			$user = $this->session->get("USER");
+			if(F3::get("activeDirectory.useActiveDirectory")){
+				$user = $this->session->get("USER");
 
-			$node = new MenuItem();
+				$node = new MenuItem();
 
-			if(!$user->isLoggedIn()){			
-				$node->name = "Login";
-				$node->root_path = '/loginForm';
-				$node->icon = 'icon-lock';
-				$node->sort_order = 100;
-			} else {
-				$node->name = "Logout";
-				$node->root_path = '/logout';
-				$node->icon = 'icon-lock';
-				$node->sort_order = 100;
-				$node->id = "lnkLogout";
+				if(!$user->isLoggedIn()){			
+					$node->name = "Login";
+					$node->root_path = '/loginForm';
+					$node->icon = 'icon-lock';
+					$node->sort_order = 100;
+				} else {
+					$node->name = "Logout";
+					$node->root_path = '/logout';
+					$node->icon = 'icon-lock';
+					$node->sort_order = 100;
+					$node->id = "lnkLogout";
 
-				$this->addF3Script('logoutScript');				
+					$this->addF3Script('logoutScript');				
+				}
+
+				Menu::addMenu($node);
 			}
-
-			Menu::addMenu($node);
 
 		}
 	}

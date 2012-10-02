@@ -12,53 +12,57 @@
 		}
 
 		public function loginForm(){
-			F3::set("content","ldap/views/loginForm.html");
-			$this->addScript('ldap/views/login.js');
-			echo Template::serve('core/layout/site.html');
+			if(F3::get("activeDirectory.useActiveDirectory")){
+				F3::set("content","ldap/views/loginForm.html");
+				$this->addScript('ldap/views/login.js');
+				echo Template::serve('core/layout/site.html');
+			}
 		}
 
 		public function tryLogin(){
 			// use request here because POST gets overwritten during validation steps.
 			// scrub santizes the input so it can't do xss or injection..
-			$data = F3::scrub($_REQUEST);
+			if(F3::get("activeDirectory.useActiveDirectory")){
+				$data = F3::scrub($_REQUEST);
 
 
-			$adSettings = F3::get("activeDirectory");
-			$ldapService = new LdapService($adSettings);
-			$logged_in = $ldapService->authenticate($data["username"], $data["password"], false);
+				$adSettings = F3::get("activeDirectory");
+				$ldapService = new LdapService($adSettings);
+				$logged_in = $ldapService->authenticate($data["username"], $data["password"], false);
 
 
-			$results = array();
+				$results = array();
 
-			if($logged_in && !is_a($logged_in, 'marshall\core\Error')){
-				$session = new Session();
-				$user = $session->get("USER");
-				$user->setLoggedIn(true);
-				$user->setUsername($data["username"]);
-				$user->setIsAdmin($ldapService->isInGroup($data["username"], $adSettings["adminGroups"]));
+				if($logged_in && !is_a($logged_in, 'marshall\core\Error')){
+					$session = new Session();
+					$user = $session->get("USER");
+					$user->setLoggedIn(true);
+					$user->setUsername($data["username"]);
+					$user->setIsAdmin($ldapService->isInGroup($data["username"], $adSettings["adminGroups"]));
 
-				/*
-					NOTE: if you add any other group checks here you will break easy-compatiablity with getting
-					bug fixes for this plugin in the future.  However, this plugin works well so you should feel
-					comfortable doing further checks if you need it.
-				 */ 
-
-
-
-				$session->set("USER",$user);
+					/*
+						NOTE: if you add any other group checks here you will break easy-compatiablity with getting
+						bug fixes for this plugin in the future.  However, this plugin works well so you should feel
+						comfortable doing further checks if you need it.
+					 */ 
 
 
 
-				$results["status"] = 1;
-				$results["message"] = "";
+					$session->set("USER",$user);
 
-			} else {
-				$results["status"] = 0;
-				$results["message"] = "Login Failed";
+
+
+					$results["status"] = 1;
+					$results["message"] = "";
+
+				} else {
+					$results["status"] = 0;
+					$results["message"] = "Login Failed";
+				}
+
+				F3::set('content',json_encode($results));
+				echo Template::serve('core/layout/json.html');
 			}
-
-			F3::set('content',json_encode($results));
-			echo Template::serve('core/layout/json.html');
 
 		}
 
