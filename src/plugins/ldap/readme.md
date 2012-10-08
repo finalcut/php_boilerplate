@@ -12,7 +12,7 @@ NOTE:  All configuration options are CASE SENSITIVE!
 ## Important Options
 	1. activeDirectory.useActiveDirectory  (true|false) - if you set this to false it will turn off the ldap plugin.
 	2. activeDirectory.accountSuffix - what domain account ending do you use; i.e.  @yourdomain.com
-	3. 
+	3. activeDirectory.baseDN - directory controllers. 
 
 ## Optional Options
 
