@@ -47,9 +47,6 @@
 		}
 
 		function listing(){
-			// it is important when returning a JSON object that you write the JSON headers or jquery may not process the return properly
-			$this->writeJsonHeaders();
-
 			$this->loadresource('/json/listing.html','');
 		}
 
@@ -62,8 +59,6 @@
 			 The initial homepage content doesn't need to be loaded this way; but once we enter the client side MVC it is best to be consistent..
 		*/
 		function template(){
-			$this->writeJavascriptHeaders();
-
 			$this->loadresource('/tpl/', '.html');
 		}
 
@@ -71,9 +66,7 @@
 			any javascript view files being used for this subdirectory will be returned via this method..
 		*/
 		function jsview(){
-			$this->writeJavascriptHeaders();
-
-			$this->loadresource( '/js/views/','');
+			$this->loadresource( '/js/views/','','js');
 		}
 
 
@@ -83,9 +76,7 @@
 			round trips
 		*/
 		function model(){
-			$this->writeJavascriptHeaders();
-
-			$this->loadresource('/js/models/','');
+			$this->loadresource('/js/models/','','js');
 		}
 
 
@@ -94,9 +85,9 @@
 			when /directory/listing is called there is no resouce being found (see routes.php in this directory to see how resource is assigned)
 			however the listing function in this file can still call this becuase it basically hardcodes the resource value in the path variable as listing.html
 		*/
-		private function loadresource($path, $ext){
+		private function loadresource($path, $ext, $layout='bare'){
 			F3::set('content','directory/views' . $path . F3::get('PARAMS["resource"]') . $ext);
-			echo Template::serve('core/layout/bare.html');
+			echo Template::serve('core/layout/' . $layout . '.html');
 			
 		}
 
