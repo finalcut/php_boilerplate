@@ -12,13 +12,7 @@
 		}
 
 		public function addMenuItems(){
-
-			$node = new MenuItem();
-			$node->name = $this->name;
-			$node->root_path = '/directory';
-			$node->icon = 'icon-user';
-			$node->sort_order = 50;
-
+			$node = $this->buildMenuItem($this->name, "/directory", 'icon-user', 50);
 			Menu::addMenu($node);
 
 		}

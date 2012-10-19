@@ -12,13 +12,7 @@
 		}
 
 		public function addMenuItems(){
-
-			$node = new MenuItem();
-			$node->name = $this->name;
-			$node->root_path = '/formbuilder';
-			$node->icon = 'icon-check';
-			$node->sort_order = 20;
-
+			$node = $this->buildMenuItem($this->name, "/formbuilder", 'icon-check', 20);
 			Menu::addMenu($node);
 
 		}

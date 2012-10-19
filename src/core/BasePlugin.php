@@ -17,7 +17,18 @@
 		 
 		abstract function addMenuItems();
 
-		 abstract function getPluginName();
+		abstract function getPluginName();
+
+		function buildMenuItem($name, $path, $icon, $sort_order, $id=""){
+			$item = new MenuItem();
+			$item->name = $name;
+			$item->root_path = $path;
+			$item->icon = $icon;
+			$item->sort_order = $sort_order;
+			$item->id = $id;
+			return $item;
+
+		}
 
 
 	}

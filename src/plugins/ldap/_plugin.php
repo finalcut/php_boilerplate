@@ -27,17 +27,9 @@
 				$node = new MenuItem();
 
 				if(!$user->isLoggedIn()){			
-					$node->name = "Login";
-					$node->root_path = '/loginForm';
-					$node->icon = 'icon-lock';
-					$node->sort_order = 100;
+					$node = $this->buildMenuItem("Login", "/loginForm", 'icon-lock', 100);
 				} else {
-					$node->name = "Logout";
-					$node->root_path = '/logout';
-					$node->icon = 'icon-lock';
-					$node->sort_order = 100;
-					$node->id = "lnkLogout";
-
+					$node = $this->buildMenuItem("Logout", "/logout", 'icon-lock', 100, "lnkLogout");
 					$this->addF3Script('logoutScript');				
 				}
 
