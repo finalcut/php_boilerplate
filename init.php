@@ -96,6 +96,9 @@ EOD;
 	$backbone = promptUser("Do you want to use the Backbone Javascript MVC framework? (true/FALSE)?", "false");
 	$backbone = confirmTrueOrFalse($backbone);
 
+	$feedback = promptUser("Do you want to use the feedback tool? (true/FALSE)", "false");
+	$feedback = confirmTrueOrFalse($feedback);
+
 
 
 
@@ -144,6 +147,9 @@ useJSFormFieldMasking=$jsMasking
 
 useJSFormValidation=$jsValidation
 
+
+; --- you can turn on the mu standard feedback tool; just set this to true.  Make sure the tool works first; check muwww03/e$/inetpub/php_apps/mufeedback and make sure submission.php is finished.
+useFeedbackTool=$feedback
 
 
 ;--- you can use backbone if you want; just set this to true:
