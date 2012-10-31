@@ -9,6 +9,7 @@
 		private $username = "";
 		private $loggedIn = false;
 		private $isAdmin = false;
+		private $id = 0;
 		
 		function __construct(){
 			$this->clearAll();
@@ -18,6 +19,7 @@
 			$this->setUsername("");
 			$this->setLoggedIn(false);
 			$this->setIsAdmin(false);
+			$this->setId(0);
 		}
 
 		public function setUsername($username){
@@ -49,6 +51,14 @@
 
 		public function isAdmin(){
 			return $this->isAdmin;
+		}
+
+
+		public function setId($id){
+			$this->id = $id;
+		}
+		public function getId(){
+			return $this->id;
 		}
 	}
 ?>
