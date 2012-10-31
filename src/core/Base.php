@@ -62,11 +62,12 @@
 		}
 
 
-
-		function dump($val){
+		function dump($val, $abort=false){
 			print_r("<pre>");
 			print_r($val);
 			print_r("</pre>");
+			if($abort)
+				die('aborted by dump');
 		}
 
 	}
