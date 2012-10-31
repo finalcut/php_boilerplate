@@ -99,6 +99,8 @@ EOD;
 	$feedback = promptUser("Do you want to use the feedback tool? (true/FALSE)", "false");
 	$feedback = confirmTrueOrFalse($feedback);
 
+	$ldap = promptUser("Do you want to use the LDAP authentication? (true/FALSE)", "false");
+	$ldap = confirmTrueOrFalse($feedback);
 
 
 
@@ -163,6 +165,45 @@ dbsettings.host={YOURDBHOST}
 dbsettings.name={YOURDBNAME}
 dbsettings.username={YOURDBUSERNAME}
 dbsettings.password= {YOURDBPASSWORD}
+
+
+
+
+;--- ACTIVE DIRECTORY SETTINGS
+activeDirectory.useActiveDirectory = $ldap
+;; put in your domain like mydomain.com for account accountSuffix
+activeDirectory.accountSuffix = "@??"
+;; domain controllers.. like DC=mydomain,DC=com
+activeDirectory.baseDN = "DC=??,DC=??"
+activeDirectory.realPrimaryGroup=true
+activeDirectory.useSSL=false
+activeDirectory.useTLS=false
+activeDirectory.recursiveGroups=true
+;-- dont set this unless you have to override it, then get rid of the semi-colon at the start of the line. Marshall should not have to set this.
+;activeDirectory.adPort=""  
+
+; comma delimited list of strings if you have more than one like so:  "dc1.mydomain.com","dc2.myDomain.com"
+activeDirectory.domainControllers = ""
+
+
+
+;-- comma delimited list of strings like "group1","group2"
+;-- NOTE: im intentionally not using this; admins are defined within the app from the pool of users in the usersGroup
+activeDirectory.adminGroups= ""
+
+;-- feel free to define other groups as useful values in here as well - you're not limited to my definitions some examples:
+;activeDirectory.usersGroup= ""
+;activeDirectory.editorsGroup= ""
+;basically if you have different roles in your app and you limit users to a role based on an AD group you could use these kinds of group settings.
+
+
+
+;-- THESE AREN'T USED CURRENTLY:
+ ;-- dont set this unless you know what you are doing.  if you set it remove the semi-colon from the beginning of the line
+ ;activeDirectory.adminUsername="". If you dont want it set put the semi-colon at the beginning of the line or it wont work
+
+ ;-- dont set this unless you know what you are doing.  if you set it remove the semi-colon from the beginning of the line. If you dont want it set put the semi-colon at the beginning of the line or it wont work
+ ;activeDirectory.adminPassword="" 
 EOD;
 
 	writeIt("src/config.cfg",$config);
