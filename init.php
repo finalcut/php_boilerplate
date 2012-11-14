@@ -100,7 +100,7 @@ EOD;
 	$feedback = confirmTrueOrFalse($feedback);
 
 	$ldap = promptUser("Do you want to use the LDAP authentication? (true/FALSE)", "false");
-	$ldap = confirmTrueOrFalse($feedback);
+	$ldap = confirmTrueOrFalse($ldap);
 
 
 
